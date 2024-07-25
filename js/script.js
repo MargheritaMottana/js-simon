@@ -21,7 +21,7 @@ const numberContainer = document.getElementById('numberContainer')
 
 // const container = document.getElementById('numberContainer');
 
-for (let i = 1; i < 5; i++) {
+for (let i = 1; i <= 5; i++) {
 
     const number = getRndNmbr(minimo, massimo);
     console.log('number', number, typeof number)
@@ -44,7 +44,15 @@ let clock = setInterval(function () {
         clock = null;
 
         // al termine del timer, svuoto il contenuto dell'html e ci metto del nuovo testo
-        numberContainer.innerHTML = ` Ora inserisci i numeri che hai visto rispettando l'ordine `
+        numberContainer.innerHTML = ` Ora inserisci nei prompt i numeri che hai visto, rispettandone l'ordine. `;
+
+        setTimeout(function () {
+            // alla fine del timer inserisco i prompt
+            for (let i = 0; i < 5; i++) {
+                const numeroUtente = parseInt(prompt(`Inserisci qui il ${i + 1}° numero`))
+            };
+        }, 0.5 * 1000)
+
     }
     else {
         counter--;

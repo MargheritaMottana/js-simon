@@ -8,31 +8,50 @@ Descrizione:
 5. Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 */
 
-//devo creare 5 elementi in pagina
+//variabili
+const minimo = 1;
+const massimo = 10;
+
+const random = []
+
+const numberContainer = document.getElementById('numberContainer')
+
+// devo creare 5 elementi in pagina
 // creo un ciclo che mi scriva 5 elementi
-for (let i = 1; i <= 5; i++) {
-    // creo l'elemento in html
-    const number = document.createElement('div');
-    // metto il testo dentro il cerchio
-    number.innerHTML = Math.floor((Math.random() * 50) + 1);
-    // metto il cerchio dentro il suo container
-    numberContainer.append(number);
 
-    // devo creare un timer che parte all'avvio della pagina e che duri 30 secondi
-    let counter = 3;
+// const container = document.getElementById('numberContainer');
 
-    let clock = setInterval(function () {
-        console.log(counter);
+for (let i = 1; i < 5; i++) {
 
-        // se il timer arriva a 0 fermati
-        if (counter == 0) {
+    const number = getRndNmbr(minimo, massimo);
+    console.log('number', number, typeof number)
 
-            clearInterval(clock);
-            clock = null;
-        }
-        else {
-            counter--;
-        }
-    }, 1000);
+    random.push(number);
+    numberContainer.innerHTML += `<div> ${number} </div> `;
 
 };
+
+// devo creare un timer che parte all'avvio della pagina e che duri 30 secondi
+let counter = 3;
+
+let clock = setInterval(function () {
+    console.log(counter);
+
+    // se il timer arriva a 0 fermati
+    if (counter == 0) {
+
+        clearInterval(clock);
+        clock = null;
+
+        // al termine del timer, svuoto il contenuto dell'html e ci metto del nuovo testo
+        numberContainer.innerHTML = ` Ora inserisci i numeri che hai visto rispettando l'ordine `
+    }
+    else {
+        counter--;
+    }
+}, 1000);
+
+// funzione per generare numeri random compresi min e max
+function getRndNmbr(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
